@@ -1,0 +1,271 @@
+<html ng-app="app">
+<head>
+	<link type="text/css" rel="stylesheet/less" href="theme.less">
+
+	<link type="text/css" rel="stylesheet/less" href="theme-dev.less">
+
+	<script type="text/javascript" src="../bower_components/less.js/dist/less-1.7.3.js"></script>
+	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="../bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
+
+	<script type="text/javascript" src="../js/form-service.js"></script>
+
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.service("FormService", FormService);
+
+		$(document).ready(function(){
+			var s = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+			  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+			  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+			  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+			  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+			  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+			  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+			  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+			  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+			];
+			var states = new Bloodhound({
+			  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+			  queryTokenizer: Bloodhound.tokenizers.whitespace,
+			  // `states` is an array of state names defined in "The Basics"
+			  local: $.map(s, function(state) { return { value: state }; })
+			});
+
+			// kicks off the loading/processing of `local` and `prefetch`
+			states.initialize();
+
+			$('.typeahead').typeahead({},{source: states.ttAdapter()})
+		});
+
+	</script>
+
+	<script type="text/javascript" src="../ui-components/toggle.js"></script>
+	<script type="text/javascript" src="../ui-components/toolbar.js"></script>
+	<script type="text/javascript" src="../ui-components/input.js"></script>
+	<script type="text/javascript" src="../ui-components/radio-btns.js"></script>
+
+</head>
+<body data-spy="scroll" data-target="#toolbar">
+
+<nav id="navigation" class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+	<ul class="nav navbar-nav">
+		<li><a href="#">Roast</a></li>
+		<li><a href="#">Production</a></li>
+		<li><a href="#">Inventory</a></li>
+	</ul>
+</div>
+</nav>
+
+<k-toolbar>
+<div class="col-lg-6">
+	<a class="btn btn-toolbar"><span class="glyph-icon glyph-arrow-left"></span> This Could</a>
+	<div class="btn-group">
+		<a class="btn btn-toolbar">Hello</a>
+		<a class="btn btn-toolbar">Hello</a>
+		<a class="btn btn-toolbar">Hello</a>
+	</div>
+	<a class="btn btn-primary">Hello world</a>
+</div>
+</k-toolbar>
+
+<div></div>
+<div></div>
+<div></div>
+<div>
+	<h1>Quick Brown Fox Jumped Over The Lazy Dog <small>Subheading</small></h1>
+	<h2>Quick Brown Fox Jumped Over The Lazy Dog <small>Subheading</small></h2>
+	<h3>Quick Brown Fox Jumped Over The Lazy Dog <small>Subheading</small></h3>
+	<h4>Quick Brown Fox Jumped Over The Lazy Dog <small>Subheading</small></h4>
+	<h5>Quick Brown Fox Jumped Over The Lazy Dog <small>Subheading</small></h5>
+	<h6>Quick Brown Fox Jumped Over The Lazy Dog <small>Subheading</small></h6>
+</div>
+
+<div>
+	<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur nunc vitae dignissim sagittis. Suspendisse eget nisi magna. Mauris eros velit, imperdiet in sapien eu, porttitor tincidunt leo. Cras malesuada magna eget magna varius placerat. Fusce eu condimentum felis. Sed id neque turpis. Sed sed orci bibendum, placerat nisi dapibus, congue ante. Vivamus posuere eros vel varius viverra. Suspendisse et neque quis lectus vestibulum luctus. Pellentesque augue odio, consequat eu lobortis in, fringilla nec dolor. Praesent malesuada posuere tellus aliquet viverra. Pellentesque adipiscing vulputate orci, ut vestibulum sem bibendum in. Nulla vel justo risus. Integer pretium arcu eu ullamcorper gravida. Cras quis sapien dictum, dictum sem quis, pulvinar elit. Nullam vel neque erat.
+	</p>
+	<p>
+		Telstra Corporation 1234567890 1234567890
+	</p>
+</div>
+
+<div>
+	<input type="text" class="form-control" placeholder="hello world">
+</div>
+
+<div>
+	<input type="text" class="form-control k-input-error" placeholder="hello world">
+</div>
+
+<div>
+	<div class="form-inline">
+		<label class="control-label">Hello world</label>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="0" style="text-align: right">
+			<span class="input-group-addon">m</span>
+		</div>
+		<span class="form-control-static"> : </span>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="00" style="text-align: right">
+			<span class="input-group-addon">s</span>
+		</div>
+	</div>
+</div>
+<div>
+	<!--<input class="typeahead" type="text" placeholder="hello world">-->
+	<k-input placeholder="States of USA" source=" ['hello'] "></k-input>
+</div>
+
+<div>
+	<k-radio-btns width="200" name="group" class="k-radio-btns-success" source=" ['&deg; C', '&deg; F'] "></k-radio-btns>
+</div>
+
+<div>
+	<button type="button" class="btn btn-default"><span class="glyph-icon glyph-cog"></span> Default</button>
+	<a class="btn btn-primary">Primary</a>
+	<button type="button" class="btn btn-secondary">Secondary</button>
+	<button type="button" class="btn btn-success">Success</button>
+	<button type="button" class="btn btn-info">Info</button>
+	<button type="button" class="btn btn-warning">Warning</button>
+	<button type="button" class="btn btn-danger">Danger</button>
+	<button type="button" class="btn btn-link">Link</button>
+</div>
+
+<div>
+	<p>
+	  <button type="button" class="btn btn-primary btn-lg">Large button</button>
+	  <button type="button" class="btn btn-default btn-lg">Large button</button>
+	</p>
+	<p>
+	  <button type="button" class="btn btn-primary">Default button</button>
+	  <button type="button" class="btn btn-default">Default button</button>
+	</p>
+	<p>
+	  <button type="button" class="btn btn-primary btn-sm">Small button</button>
+	  <button type="button" class="btn btn-default btn-sm">Small button</button>
+	</p>
+	<p>
+	  <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+	  <button type="button" class="btn btn-default btn-xs">Extra small button</button>
+	</p>
+</div>
+
+<div>
+	<k-toggle name="hello"></k-toggle>
+	<a class="btn btn-default">Hello world</a>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">Hello World</div>
+				</div>
+				<div class="panel-body">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur nunc vitae dignissim sagittis. Suspendisse eget nisi magna. Mauris eros velit, imperdiet in sapien eu, porttitor tincidunt leo. Cras malesuada magna eget magna varius placerat. Fusce eu condimentum felis. Sed id neque turpis. Sed sed orci bibendum, placerat nisi dapibus, congue ante. Vivamus posuere eros vel varius viverra. Suspendisse et neque quis lectus vestibulum luctus. Pellentesque augue odio, consequat eu lobortis in, fringilla nec dolor. Praesent malesuada posuere tellus aliquet viverra. Pellentesque adipiscing vulputate orci, ut vestibulum sem bibendum in. Nulla vel justo risus. Integer pretium arcu eu ullamcorper gravida. Cras quis sapien dictum, dictum sem quis, pulvinar elit. Nullam vel neque erat.				</div>
+			</div>
+		</div>		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">Hello world</div>
+				</div>
+				<div class="panel-body">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur nunc vitae dignissim sagittis. Suspendisse eget nisi magna. Mauris eros velit, imperdiet in sapien eu, porttitor tincidunt leo. Cras malesuada magna eget magna varius placerat. Fusce eu condimentum felis. Sed id neque turpis. Sed sed orci bibendum, placerat nisi dapibus, congue ante. Vivamus posuere eros vel varius viverra. Suspendisse et neque quis lectus vestibulum luctus. Pellentesque augue odio, consequat eu lobortis in, fringilla nec dolor. Praesent malesuada posuere tellus aliquet viverra. Pellentesque adipiscing vulputate orci, ut vestibulum sem bibendum in. Nulla vel justo risus. Integer pretium arcu eu ullamcorper gravida. Cras quis sapien dictum, dictum sem quis, pulvinar elit. Nullam vel neque erat.				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div>
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>Heading</th>
+			<th>World</th>
+			<th>Class</th>
+		</tr>
+		</thead>
+
+		<tfoot>
+		<tr>
+			<td>Hello</td>
+			<td>Hello</td>
+			<td>Hello</td>
+		</tr>
+		</tfoot>
+
+		<tbody>
+		<tr>
+			<td>123</td>
+			<td>123</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>123</td>
+			<td>123</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>123</td>
+			<td>123</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>123</td>
+			<td>123</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>123</td>
+			<td>123</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>123</td>
+			<td>123</td>
+			<td>123</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div>
+	<div class="cp-container">
+		<div class="cp-box cp-primary-light"></div>
+		<div class="cp-box cp-primary"></div>
+		<div class="cp-box cp-primary-dark"></div>
+	</div>
+
+	<div class="cp-container">
+		<div class="cp-box cp-secondary-light"></div>
+		<div class="cp-box cp-secondary"></div>
+		<div class="cp-box cp-secondary-dark"></div>
+	</div>
+
+	<div class="cp-container">
+		<div class="cp-box cp-success-light"></div>
+		<div class="cp-box cp-success"></div>
+		<div class="cp-box cp-success-dark"></div>
+	</div>
+
+	<div class="cp-container">
+		<div class="cp-box cp-bgcolor-primary-light"></div>
+		<div class="cp-box cp-bgcolor-primary"></div>
+		<div class="cp-box cp-bgcolor-primary-dark"></div>
+	</div>
+
+	<div class="cp-container">
+		<div class="cp-box cp-bgcolor-secondary-light"></div>
+		<div class="cp-box cp-bgcolor-secondary"></div>
+		<div class="cp-box cp-bgcolor-secondary-dark"></div>
+	</div>
+
+</div>
+
+</body>
+</html>

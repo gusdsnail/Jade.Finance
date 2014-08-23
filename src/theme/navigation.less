@@ -1,0 +1,53 @@
+@navigation-font-color: @gray-light;
+
+#navigation {
+	min-height: @navigation-height;
+	height: @navigation-height;
+	background-color: @bgcolor-secondary;
+
+	border-top: 4px solid @color-primary;
+	border-bottom: 3px solid @bgcolor-secondary-light;
+
+	a {
+		font-weight: 300;
+		padding: 8px;
+		color: @navigation-font-color;
+		cursor: default;
+
+		&:hover, {
+			background-color: @bgcolor-secondary-dark;
+			color: white;
+		}
+	}
+	.open > a {
+		background-color: @bgcolor-secondary-dark;
+		color: white;
+	}
+
+	-webkit-user-select: none;
+
+}
+
+#content-view {
+	position: absolute;
+	top: @navigation-bottom;
+	width: 100%;
+
+	/* Modified to ensure the dropdown menus display correctly */
+	z-index: -1;
+
+	.content-body {
+		position: absolute;
+		top: @toolbar-bottom;
+		left: 0;
+		right: 0;
+	}
+
+	.content-heading {
+		padding-bottom: @padding-large-vertical;
+	}
+}
+
+.content-title {
+	margin-top: 36px;
+}

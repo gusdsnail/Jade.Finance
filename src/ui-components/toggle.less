@@ -1,0 +1,86 @@
+@toggle-padding-vertical: 2px;
+@toggle-margin-vertical: 4px;
+@toggle-height: @toggle-padding-vertical*2 + floor(@font-size-base * @line-height-base) + 2px; //Minor Border adjustment
+@toggle-width: 80px;
+@toggle-label-padding: 5px;
+@toggle-radius: @toggle-height/2;
+
+@toggle-handle-height: @toggle-height;
+@toggle-handle-width: @toggle-handle-height;
+
+.k-toggle {
+	height: @toggle-height;
+	width: @toggle-width;
+	border-radius: @toggle-radius;
+	font-family: @font-family-sans-serif;
+
+	-webkit-user-select: none;
+	overflow: hidden;
+	position: relative;
+	margin: @toggle-margin-vertical;
+	display: inline-block;
+	float: left;
+	background-color: @bgcolor-secondary;
+
+	>div:last-child {
+		position: absolute;
+		left: -(@toggle-width - @toggle-radius*2);
+
+		>div:first-child, >div:last-child {
+			position: absolute;
+			width: @toggle-width - @toggle-radius;
+			font-weight: normal;
+			padding: @toggle-padding-vertical 0px;
+			text-align: center;
+		}
+		>div:first-child {
+			top: 1; //border adjustment
+			left: 0;
+			color: white;
+			padding-right: @toggle-label-padding;
+		}
+		>div:last-child {
+			top: 1; //border adjustment
+			left: @toggle-width - @toggle-radius;
+			padding-left: @toggle-label-padding;
+			color: white;
+		}
+	}
+	>div:first-child {
+		width: 100%;
+		height: 100%;
+		border: 1px solid @gray-light;
+		border-radius: @toggle-radius;
+		position: absolute;
+		top: 0;
+		z-index: 1
+	}
+}
+
+.k-toggle-handle {
+	position: absolute;
+	top: 3px;
+	width: @toggle-height - 6px;
+	height: @toggle-height - 6px;
+	border-radius: @toggle-radius;
+	z-index: 1;
+	left: @toggle-width - @toggle-radius*2 + 3;
+
+	background-color: white;
+
+}
+
+.k-toggle-checked {
+	background-color: @color-success-light;
+
+	> div:last-child {
+//		left: 0;
+	}
+	> div:first-child {
+		border-color: @color-success;
+	}
+
+	.k-toggle-handle {
+		background-color: white;
+	}
+}

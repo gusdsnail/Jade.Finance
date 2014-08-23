@@ -1,0 +1,38 @@
+.table {
+	font-weight: 300;
+
+	> thead {
+		> tr {
+			th {
+				border-bottom: 1px solid @color-primary-dark;
+				font-weight: normal;
+			}
+		}
+	}
+	
+	> tfoot {
+		>tr {
+			td {
+				border-top: 1px solid @color-primary-dark;
+				font-weight: normal;
+			}
+		}
+	}
+
+	> tbody {
+		>tr {
+			td {
+				border-bottom: 1px solid @bgcolor-primary;
+			}
+		}
+		>tr:last-child {
+			td {
+				border-bottom: none;
+			}
+		}
+	}
+}
+
+.table-text-right {
+	text-align: right;
+}
